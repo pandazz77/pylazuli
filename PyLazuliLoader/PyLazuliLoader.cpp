@@ -1,13 +1,16 @@
-#include <pybind11/embed.h>
-#include <QWidget>
-#include <QApplication>
-#include "BaseNaviWidget.h"
+#include "PyLazuliLoader.h"
 
 namespace py = pybind11;
 
-int main(int argc, char *argv[]){
-    QApplication app(argc,argv);
+PyLazuliLoader::PyLazuliLoader(QObject *parent){
 
+}
+
+PyLazuliLoader::~PyLazuliLoader(){
+
+}
+
+BaseNaviWidget *PyLazuliLoader::getWidget(){
     py::scoped_interpreter guard{};
 
     auto mod = py::module_::import("test");
@@ -17,7 +20,5 @@ int main(int argc, char *argv[]){
     qDebug() << ptr;
 
     BaseNaviWidget *widget = static_cast<BaseNaviWidget*>(ptr);
-    widget->show();
-
-    app.exec();
+    return widget;
 }

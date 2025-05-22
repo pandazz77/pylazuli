@@ -15,7 +15,7 @@ find_package(pybind11 REQUIRED)
 add_executable(python_embed_example wrappers.cpp)
 
 # Link against Python libraries
-target_link_libraries(python_embed_example PRIVATE pybind11::embed ${PYTHON_LIBRARIES} Qt6::Widgets)
+target_link_libraries(python_embed_example PRIVATE pybind11::embed ${PYTHON_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib)
 
 # Set include directories
 target_include_directories(python_embed_example PRIVATE ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS})
