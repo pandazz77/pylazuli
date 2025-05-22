@@ -1,28 +1,42 @@
 from BaseNaviWidget import BaseNaviWidget
 import PyQt6
+import PyQt6.QtCore
 import PyQt6.QtGui
 import PyQt6.QtWidgets
+import PyQt6.sip
 
 class Test(BaseNaviWidget):
     def __init__(self):
         super().__init__(0)
 
-    def icon():
+    def icon(self):
         return PyQt6.QtGui.QIcon()
 
-    def name():
+    def name(self):
         return "TestName"
 
-    def description():
+    def description(self):
         return "TestDesc"
 
-    def getNavigationData():
+    def getNavigationData(self):
+        print(123)
         return ["None"]
 
+def unwrap(obj) -> int:
+    result = PyQt6.sip.unwrapinstance(obj)
+    print("FROM PYTHON:",result)
+    return result
+
+def create_instance() -> Test:
+    return Test()
 
 if __name__ == "__main__":
     app = PyQt6.QtWidgets.QApplication([])
 
     test = Test()
     test.show()
+
+    print(unwrap(test))
+
+    # test.startSend()
     app.exec()
