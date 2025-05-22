@@ -12,11 +12,10 @@ find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 REQUIRED)
 
 set(SRCS
-    NaviPluginInterface.h NaviPluginInterface.cpp
     PyLazuliLoader.h PyLazuliLoader.cpp
 )
 
-qt_wrap_cpp(MOC_SOURCES NaviPluginInterface.h PyLazuliLoader.h)
+qt_wrap_cpp(MOC_SOURCES PyLazuliLoader.h)
 
 
 add_library(${PROJECT_NAME} SHARED ${SRCS} ${MOC_SOURCES})
