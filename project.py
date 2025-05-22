@@ -48,35 +48,3 @@ class BaseNaviWidgetsBindings(PyQtBindings):
             qmake_QT=['widgets']
         )
         self._project = project
-
-    # def apply_user_defaults(self, tool):
-    #     self.libraries.append('BaseNaviWidgetLib')
-    #     super().apply_user_defaults(tool)
-
-
-# class FooProject(PyQtProject):
-#     def __init__(self):
-#         super().__init__()
-
-#     def _build_foo(self):
-#         cwd = os.path.abspath('BaseNaviWidget')
-#         build_dir = os.path.join(cwd,"build")
-#         os.makedirs(build_dir,exist_ok=True)
-#         subprocess.run(['cmake','..'], cwd=build_dir, capture_output=True, check=True)              # configure
-#         subprocess.run(['cmake','--build',build_dir], cwd=cwd, capture_output=True, check=True)     # build
-
-#     def build(self):        # sip-build
-#         self._build_foo()
-#         super().build()
-
-#     def build_sdist(self, sdist_directory): # sip-sdist
-#         self._build_foo()
-#         return super().build_sdist(sdist_directory)
-
-#     def build_wheel(self, wheel_directory): # sip-wheel
-#         self._build_foo()
-#         return super().build_wheel(wheel_directory)
-
-#     def install(self): # sip-install
-#         self._build_foo()
-#         super().install()
