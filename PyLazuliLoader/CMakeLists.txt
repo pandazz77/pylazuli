@@ -24,5 +24,5 @@ qt_wrap_cpp(MOC_SOURCES PyLazuliLoader.h)
 
 add_library(${PROJECT_NAME} SHARED ${SRCS} ${MOC_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed ${PYTHON_LIBRARIES} python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}  Qt6::Widgets BaseNaviWidgetLib )
-target_include_directories(${PROJECT_NAME} PUBLIC ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed Qt6::Widgets BaseNaviWidgetLib )
+target_include_directories(${PROJECT_NAME} PUBLIC ${pybind11_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)

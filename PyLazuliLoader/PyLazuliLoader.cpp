@@ -3,7 +3,12 @@
 namespace py = pybind11;
 
 PyLazuliLoader::PyLazuliLoader(QObject *parent){
-
+    py::scoped_interpreter guard{};
+    py::module_ sys = py::module_::import("sys");
+    
+    py::print("python path:",sys.attr("path"));
+    py::print("python version: ", sys.attr("version_info"));
+    py::print("python executable", sys.attr("executable"));
 }
 
 PyLazuliLoader::~PyLazuliLoader(){
