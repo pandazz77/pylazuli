@@ -1,3 +1,4 @@
-sip==6.11.0
-PyQt6==6.5.3
-PyQt6-Qt6==6.5.3
+sip==6.11.1
+PyQt6==6.9.0      # SPECIFY YOUR VERSION
+PyQt6-Qt6==6.9.0  # SPECIFY YOUR VERSION
+PyQt-builder==1.18.1

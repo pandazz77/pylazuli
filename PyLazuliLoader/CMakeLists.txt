@@ -15,13 +15,14 @@ set(SRCS
     PyLazuliLoader.h PyLazuliLoader.cpp
 )
 
+# fetch BaseNaviWidgetLib include dir to pass qt moc interface
+get_target_property(BaseNaviWidget_INCLUDE_DIRS BaseNaviWidgetLib INTERFACE_INCLUDE_DIRECTORIES)
+include_directories(${BaseNaviWidget_INCLUDE_DIRS})
+
 qt_wrap_cpp(MOC_SOURCES PyLazuliLoader.h)
 
 
 add_library(${PROJECT_NAME} SHARED ${SRCS} ${MOC_SOURCES})
 
-# Определяем макрос QEXPORT только при компиляции библиотеки
-target_compile_definitions(${PROJECT_NAME} PRIVATE Q_EXPORT)
-target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed ${PYTHON_LIBRARIES} python3.10  Qt6::Widgets BaseNaviWidgetLib )
-
+target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed ${PYTHON_LIBRARIES} python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}  Qt6::Widgets BaseNaviWidgetLib )
 target_include_directories(${PROJECT_NAME} PUBLIC ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)

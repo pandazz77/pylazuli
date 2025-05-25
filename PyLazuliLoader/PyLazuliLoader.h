@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QtPlugin>
 #include <BaseNaviWidget.h>
-#include "NaviPluginInterface.h"
+#include <NaviPluginInterface.h>
 
 
 class PyLazuliLoader : public NaviPluginInterface
