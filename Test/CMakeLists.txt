@@ -25,3 +25,7 @@ set_target_properties(python_embed_example PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     RUNTIME_OUTPUT_NAME python_embed_example
 )
+
+add_custom_target(copy_python_file ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/test.py ${CMAKE_BINARY_DIR}/bin/
+)
