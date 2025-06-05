@@ -10,6 +10,9 @@ class Test(BaseNaviWidget):
         super().__init__(0)
         self.setLayout(PyQt6.QtWidgets.QHBoxLayout()) # type: ignore  # noqa: F821
         self.layout().addWidget(PyQt6.QtWidgets.QLabel("Hello from python widget!"))
+
+    def __del__(self):
+        print("Python widget DESTRUCTED")
         
 
     def icon(self):
