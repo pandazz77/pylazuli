@@ -30,7 +30,6 @@ class Test(BaseNaviWidget):
 
 def unwrap(obj) -> int:
     result = PyQt6.sip.unwrapinstance(obj)
-    print("FROM PYTHON:",result)
     return result
 
 def create_instance() -> Test:

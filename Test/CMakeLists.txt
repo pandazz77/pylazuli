@@ -12,7 +12,7 @@ find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 REQUIRED)
 
 # Add the executable
-add_executable(python_embed_example wrappers.cpp)
+add_executable(python_embed_example embed.cpp)
 add_executable(plugin_loader plugin_loader.cpp)
 
 # Link against Python libraries
@@ -23,16 +23,6 @@ target_link_libraries(plugin_loader        PRIVATE pybind11::embed ${PYTHON_LIBR
 target_include_directories(python_embed_example PRIVATE ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS})
 target_include_directories(plugin_loader        PRIVATE ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS})
 
-# Set the Python executable path if needed (optional, depending on your setup)
-set_target_properties(python_embed_example PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    RUNTIME_OUTPUT_NAME python_embed_example
-)
-set_target_properties(plugin_loader PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-    RUNTIME_OUTPUT_NAME plugin_loader
-)
-
 add_custom_target(copy_python_file ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/test.py ${CMAKE_BINARY_DIR}/bin/
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/test.py ${CMAKE_CURRENT_BINARY_DIR}
 )
