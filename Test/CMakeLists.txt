@@ -16,8 +16,8 @@ add_executable(python_embed_example embed.cpp)
 add_executable(plugin_loader plugin_loader.cpp)
 
 # Link against Python libraries
-target_link_libraries(python_embed_example PRIVATE pybind11::embed ${PYTHON_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib)
-target_link_libraries(plugin_loader        PRIVATE pybind11::embed ${PYTHON_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib)
+target_link_libraries(python_embed_example PRIVATE pybind11::embed ${Python_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib)
+target_link_libraries(plugin_loader        PRIVATE pybind11::embed ${Python_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib)
 
 # Set include directories
 target_include_directories(python_embed_example PRIVATE ${Python_INCLUDE_DIRS} ${pybind11_INCLUDE_DIRS})

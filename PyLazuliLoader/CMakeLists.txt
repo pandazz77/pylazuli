@@ -11,6 +11,11 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 REQUIRED)
 
+message(STATUS "Python Interpreter: ${Python_EXECUTABLE}")
+message(STATUS "Python Include Directories: ${Python_INCLUDE_DIRS}")
+message(STATUS "Python Libraries: ${Python_LIBRARIES}")
+message(STATUS "Python Version: ${Python_VERSION}")
+
 set(SRCS
     PyLazuliLoader.h PyLazuliLoader.cpp
 )
@@ -24,5 +29,7 @@ qt_wrap_cpp(MOC_SOURCES PyLazuliLoader.h)
 
 add_library(${PROJECT_NAME} SHARED ${SRCS} ${MOC_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed Qt6::Widgets BaseNaviWidgetLib )
-target_include_directories(${PROJECT_NAME} PUBLIC ${pybind11_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_definitions(-DPYTHON_LIBRARIES="${Python_LIBRARIES}")
+
+target_link_libraries(${PROJECT_NAME} PUBLIC pybind11::embed ${Python_LIBRARIES} Qt6::Widgets BaseNaviWidgetLib )
+target_include_directories(${PROJECT_NAME} PUBLIC ${pybind11_INCLUDE_DIRS} ${Python_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)

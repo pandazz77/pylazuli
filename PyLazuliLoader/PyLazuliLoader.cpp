@@ -2,7 +2,15 @@
 
 namespace py = pybind11;
 
+#ifdef __linux__
+    #include <dlfcn.h>
+    #define init_pythonlib dlopen(PYTHON_LIBRARIES,RTLD_LAZY | RTLD_GLOBAL)
+#else
+    #define init_pythonlib void(0)
+#endif
+
 PyLazuliLoader::PyLazuliLoader(QObject *parent){
+    init_pythonlib;
     qDebug() << "Initializing python interpreter";
     py::initialize_interpreter();
     py::module_ sys = py::module_::import("sys");
